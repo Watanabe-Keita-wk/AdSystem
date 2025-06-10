@@ -16,7 +16,16 @@ export default defineEventHandler(async (event) => {
         const [clickResults, clickFields] = await connection.query(
             "SELECT id FROM click WHERE click_id = '" + clickId + "'"
         );
+        // クリック履歴がなければ成果発生させない
         if (clickResults.length === 0) return;
+
+        const [duplicateResults, duplicateFields] = await connection.query(
+            "SELECT id FROM conversion WHERE click_id = '" + clickId + "'"
+        );
+        // 重複成果はあげない
+        if (duplicateResults.length !== 0) return;
+
+        // 成果登録
         const click_tbl_id = clickResults[0].id
         const [conversionResults, conversionFields] = await connection.query(
             "INSERT INTO conversion (click_tbl_id, click_id) VALUES (" + click_tbl_id + ",'" + clickId + "')"
