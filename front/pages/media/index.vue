@@ -5,7 +5,7 @@
         try {
             const clickId = await $fetch(`/api/click?`, { method: 'GET' });
             await navigateTo({
-                path: '/lp',
+                path: '/media/lp',
                 query: {
                     clickId: clickId
                 }
