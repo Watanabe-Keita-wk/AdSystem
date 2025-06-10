@@ -8,7 +8,13 @@
         },
         methods: {
             async issuePromotion() {
-                alert("HELLO!" + this.name)
+                const promotionId = await $fetch(`/api/issuePromotion?name=${this.name}`, { method: 'GET' })
+                await navigateTo({
+                    path: '/admin/issueComplete',
+                    query: {
+                        promotionId: promotionId
+                    }
+                })
             }
         }
     }
