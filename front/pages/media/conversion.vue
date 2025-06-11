@@ -8,6 +8,5 @@
 <template>
     <div>
         <h1>購入ありがとうございます</h1>
-        <p>{{ clickId }}</p>
     </div>
 </template>

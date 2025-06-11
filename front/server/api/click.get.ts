@@ -1,6 +1,8 @@
 import mysql from 'mysql2/promise';
 export default defineEventHandler(async (event) => {
     const runtimeConfig = useRuntimeConfig();
+    const query = getQuery(event)
+    const promotionId = query.promotionId
     const clickId = Math.random().toString(36).slice(-10);
 
     const connection = await mysql.createConnection({
@@ -13,7 +15,7 @@ export default defineEventHandler(async (event) => {
 
     try {
         const [results, fields] = await connection.query(
-            "INSERT INTO click (click_id) VALUES ('" + clickId + "')"
+            "INSERT INTO click (click_id, promotion_id) VALUES ('" + clickId + "', '" + promotionId + "')"
         );
 
         console.log(results); // results contains rows returned by server

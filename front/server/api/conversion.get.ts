@@ -3,6 +3,7 @@ export default defineEventHandler(async (event) => {
     const runtimeConfig = useRuntimeConfig();
     const query = getQuery(event)
     const clickId = query.clickId
+    const promotionId = query.promotionId
 
     const connection = await mysql.createConnection({
         host : runtimeConfig.mysqlHost,
@@ -14,13 +15,13 @@ export default defineEventHandler(async (event) => {
 
     try {
         const [clickResults, clickFields] = await connection.query(
-            "SELECT id FROM click WHERE click_id = '" + clickId + "'"
+            "SELECT id FROM click WHERE click_id = '" + clickId + "' AND promotion_id = '" + promotionId + "'"
         );
         // クリック履歴がなければ成果発生させない
         if (clickResults.length === 0) return;
 
         const [duplicateResults, duplicateFields] = await connection.query(
-            "SELECT id FROM conversion WHERE click_id = '" + clickId + "'"
+            "SELECT id FROM conversion WHERE click_id = '" + clickId + "' AND promotion_id = '" + promotionId + "'"
         );
         // 重複成果はあげない
         if (duplicateResults.length !== 0) return;
@@ -28,7 +29,7 @@ export default defineEventHandler(async (event) => {
         // 成果登録
         const click_tbl_id = clickResults[0].id
         const [conversionResults, conversionFields] = await connection.query(
-            "INSERT INTO conversion (click_tbl_id, click_id) VALUES (" + click_tbl_id + ",'" + clickId + "')"
+            "INSERT INTO conversion (click_tbl_id, click_id, promotion_id) VALUES (" + click_tbl_id + ",'" + clickId + "','" + promotionId + "')"
         );
 
         console.log(conversionResults)
