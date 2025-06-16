@@ -18,8 +18,8 @@ export default defineEventHandler(async (event) => {
             "INSERT INTO click (click_id, promotion_id) VALUES ('" + clickId + "', '" + promotionId + "')"
         );
 
-        console.log(results); // results contains rows returned by server
-        console.log(fields); // fields contains extra meta data about results, if available
+        console.log(results);
+        console.log(fields);
     } catch (err) {
         console.log(err);
     }

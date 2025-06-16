@@ -1,9 +1,6 @@
 import mysql from 'mysql2/promise';
 export default defineEventHandler(async (event) => {
     const runtimeConfig = useRuntimeConfig();
-    const query = getQuery(event)
-    const promotionName = sanitize(query.name as string)
-    const promotionId = Math.random().toString(36).slice(-8);
 
     const connection = await mysql.createConnection({
         host : runtimeConfig.mysqlHost,
@@ -15,30 +12,17 @@ export default defineEventHandler(async (event) => {
 
     try {
         const [results, fields] = await connection.query(
-            "INSERT INTO promotions (promotion_id, promotion_name) VALUES ('" + promotionId + "', '" + promotionName + "')"
+            "SELECT click.promotion_id, promotions.promotion_name, COUNT(click.id) as click_count, COUNT(conversion.id) as cv_count FROM click LEFT JOIN conversion ON click.id = conversion.click_tbl_id LEFT JOIN promotions ON click.promotion_id = promotions.promotion_id GROUP BY click.promotion_id, promotions.promotion_name"
         );
 
         console.log(results);
         console.log(fields);
+
+        return results;
     } catch (err) {
         console.log(err);
     }
     connection.end()
 
-    return promotionId
+    return []
 })
-
-const ESCAPE_RULES: {[key: string]: string} = {
-    '&': '&amp;',
-    "'": '&apos;',
-    '"': '&quot;',
-    '<': '&lt;',
-    '>': '&gt;',
-};
-
-function sanitize(str: string): string {
-    return str.replace(
-        /[&'"<>]/g,
-        (match) => ESCAPE_RULES[match],
-    );
-}
