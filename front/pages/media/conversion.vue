@@ -2,7 +2,7 @@
     (async () => {
         const route = useRoute()
         const clickId = route.query.clickId
-        await $fetch(`/api/conversion?promotionId=okajd56e&clickId=${clickId}`, { method: 'GET' })
+        await $fetch(`/api/conversion?promotionId=2wzjbnau&clickId=${clickId}`, { method: 'GET' })
     })()
 </script>
 <template>

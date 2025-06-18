@@ -5,11 +5,21 @@
 <template>
     <div>
         <h1>プロモーション発行完了画面</h1>
-        <h3>STEP1:</h3>
-        <h3>
-            以下のスクリプトをメディアページに埋め込み、広告リンクがクリックされたときにhandleClickが発火するようにしてください<br>
-            また、clickIdは成果ページまで引き継いでください
-        </h3>
+        <h3>【メディア側作業】</h3>
+        <h4>A or Bで好きな方法を選んでください。</h4>
+        <h4>A. LPへの遷移にリダイレクトが挟まるが実装を簡単にしたい場合：</h4>
+        <h4>
+            広告リンクの遷移先に以下のURLを指定してください
+        </h4>
+        <div class="box">
+            <code>
+                http://localhost/click/promotion/{{ promotionId }}
+            </code>
+        </div>
+        <h4>B. LPへの遷移を直リンクにしたい場合：</h4>
+        <h4>
+            以下のスクリプトをメディアページに埋め込み、広告リンクがクリックされたときにhandleClickが発火するようにしてください
+        </h4>
         <div class="box">
             <code>
                 &lt;script&gt;<br>
@@ -20,11 +30,12 @@
                 &lt;/script&gt;
             </code>
         </div>
-        <h3>STEP2:</h3>
-        <h3>
-            以下のスクリプトをCVページに埋め込み、成果が発生したときにhandleCVが発火するようにしてください<br>
-            「_CLICK_ID_」の部分にはメディアページから引き継いできたclickIdが入るようにしてください
-        </h3>
+        <h3>【広告主側作業】</h3>
+        <h4>
+            ・LP来訪時にクエリパラメータに「clickId」が渡されるので、成果発生ページまで引き継いでください。<br>
+            ・以下のスクリプトをCVページに埋め込み、成果が発生したときにhandleCVが発火するようにしてください<br>
+            「_CLICK_ID_」の部分には引き継いだclickIdが入るようにしてください
+        </h4>
         <div class="box">
             <code>
                 &lt;script&gt;<br>
