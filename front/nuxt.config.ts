@@ -8,5 +8,6 @@ export default defineNuxtConfig({
       database: "AdSystem",
       mysqlUser: "adUser",
       mysqlPass: "adPass"
-  }
+  },
+  modules: ['@pinia/nuxt']
 })
