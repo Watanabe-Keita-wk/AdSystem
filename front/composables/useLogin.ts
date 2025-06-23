@@ -1,8 +1,10 @@
 import { ref } from 'vue';
+import { useAuthStore } from '../stores/auth'
 
 export const useLogin = () => {
     const userId = ref('')
     const userPass = ref('')
+    const authStore = useAuthStore()
 
     const handleLogin = async () => {
         try {
@@ -14,11 +16,13 @@ export const useLogin = () => {
                 })
             })
             if (response === true) {
-                return "true"
+                authStore.setLoginStatus(true)
+                return true
             }
-            return "false"
+            return false
         } catch (err) {
             console.error(err)
+            return false
         }
     }
     return { userId, userPass, handleLogin }
