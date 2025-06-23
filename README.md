@@ -46,6 +46,6 @@ Cookieの利用の制限があり、3rdPartyCookieはほぼ使用できず、1st
   - 非同期通信
   - TypeScriptを利用したサーバーサイドAPI実装
   - Nuxtのserverディレクトリの使い方
-  - storeディレクトリを使った状態管理
+  - storesディレクトリを使った状態管理
   - composaplesディレクトリを使ったコンポーネント実装
   - DB接続
