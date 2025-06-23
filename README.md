@@ -21,7 +21,7 @@ Cookieの利用の制限があり、3rdPartyCookieはほぼ使用できず、1st
     - 商品・サービスの訴求を行うページです。
   - CV画面（/media/conversion）
     - LPから成果発生アクション(商品購入など)で遷移するページです。
-- 管理画面
+- 管理画面（ログイン処理実装）
   - TOP画面（/admin/）
     - プロモーション発行画面と成果確認画面へのリンクのみ置いてあります。
   - プロモーション発行画面（/admin/issuePromotion）
@@ -46,4 +46,6 @@ Cookieの利用の制限があり、3rdPartyCookieはほぼ使用できず、1st
   - 非同期通信
   - TypeScriptを利用したサーバーサイドAPI実装
   - Nuxtのserverディレクトリの使い方
+  - storeディレクトリを使った状態管理
+  - composaplesディレクトリを使ったコンポーネント実装
   - DB接続
