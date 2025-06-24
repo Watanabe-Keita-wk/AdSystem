@@ -1,4 +1,7 @@
 <script setup>
+    definePageMeta({
+        middleware: ["auth"]
+    })
     const resultsData = await $fetch('/api/showResults', { method: 'GET' })
 </script>
 <template>

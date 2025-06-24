@@ -1,5 +1,7 @@
 <script>
-    import {useLogin} from '../../composables/useLogin'
+    import {useLogin} from '@/composables/useLogin'
+    import {useAuthStore} from '@/stores/useAuthStore'
+
     export default {
         data() {
             return {

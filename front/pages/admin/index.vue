@@ -1,3 +1,8 @@
+<script setup>
+    definePageMeta({
+        middleware: ["auth"]
+    })
+</script>
 <template>
     <div>
         <h1>管理画面</h1>
