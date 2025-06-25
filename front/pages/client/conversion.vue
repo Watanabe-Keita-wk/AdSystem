@@ -1,8 +1,9 @@
 <script setup>
     (async () => {
         const route = useRoute()
+        const promotionId = "l1n3qh2d"
         const clickId = route.query.clickId
-        await $fetch(`/api/conversion?promotionId=2wzjbnau&clickId=${clickId}`, { method: 'GET' })
+        await $fetch(`/api/conversion?promotionId=${promotionId}&clickId=${clickId}`, { method: 'GET' })
     })()
 </script>
 <template>

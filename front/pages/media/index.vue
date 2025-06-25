@@ -3,10 +3,10 @@
 
     async function handleClick () {
         try {
-            const promotionId = "okajd56e";
+            const promotionId = "l1n3qh2d";
             const clickId = await $fetch(`/api/click?promotionId=${promotionId}`, { method: 'GET' });
             await navigateTo({
-                path: '/media/lp',
+                path: '/client/lp',
                 query: {
                     clickId: clickId
                 }
