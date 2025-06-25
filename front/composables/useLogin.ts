@@ -5,6 +5,7 @@ export const useLogin = () => {
     const userId = ref('')
     const userPass = ref('')
     const authStore = useAuthStore()
+    const accessToken = useCookie('accessToken', { secure: true, sameSite: true });
 
     const handleLogin = async () => {
         try {
@@ -15,8 +16,9 @@ export const useLogin = () => {
                     userPass: userPass.value
                 })
             })
-            if (response === true) {
+            if (typeof response === 'string' && response !== '') {
                 authStore.setLoginStatus(true)
+                accessToken.value = response
                 return true
             }
             return false

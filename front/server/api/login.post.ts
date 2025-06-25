@@ -18,12 +18,13 @@ export default defineEventHandler(async (event) => {
 
         connection.end()
         if (results.length !== 0) {
-            return true
+            const token = Math.random().toString(36).slice(-10);
+            return token
         }
-        return false
+        return ''
     } catch (err) {
         console.log(err);
     }
     connection.end()
-    return false
+    return ''
 })
